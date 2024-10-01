@@ -9,3 +9,4 @@
 * DBeaver
 * Docker
 * Maven
+* Lombok
