@@ -15,3 +15,12 @@ Este projeto tem como objetivo a criação de uma aplicação para a gestão de 
 * 📦 **Maven** - Gerenciador de dependências utilizado para automatizar o build da aplicação e garantir a integração contínua.
 * ✨ **Lombok** - Utilizado para reduzir a quantidade de código boilerplate, gerando automaticamente getters, setters e construtores.
 * 🔒 **Spring Security** - Responsável pela implementação da autenticação e autorização, garantindo o controle de acesso às funcionalidades da aplicação.
+* 🔑 **Java JWT** - Utilizado para gerar e validar tokens JWT (JSON Web Tokens), garantindo a segurança nas autenticações e permitindo o controle de sessões de forma segura, sem a necessidade de armazenar informações sensíveis no servidor.
+
+
+## 📞 Contato 
+
+<div>
+    <a href="https://www.linkedin.com/in/joschonarth/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+    <a href="mailto:joschonarth@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+</div>
