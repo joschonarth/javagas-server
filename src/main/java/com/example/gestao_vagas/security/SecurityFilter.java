@@ -1,13 +1,11 @@
 package com.example.gestao_vagas.security;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -31,15 +29,17 @@ public class SecurityFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(null);
         String header = request.getHeader("Authorization");
 
-        if (header != null) {
-            var subjectToken = this.jwtProvider.validateToken(header);
-            if (subjectToken.isEmpty()) {
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                return;
+        if (request.getRequestURI().startsWith("/company")) {
+            if (header != null) {
+                var subjectToken = this.jwtProvider.validateToken(header);
+                if (subjectToken.isEmpty()) {
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    return;
+                }
+                request.setAttribute("company_id", subjectToken);
+                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(subjectToken, null, Collections.emptyList());
+                SecurityContextHolder.getContext().setAuthentication(auth);
             }
-            request.setAttribute("company_id", subjectToken);
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(subjectToken, null, Collections.emptyList());
-            SecurityContextHolder.getContext().setAuthentication(auth);
         }
 
         filterChain.doFilter(request, response);

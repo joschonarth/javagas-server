@@ -1,6 +1,5 @@
 package com.example.gestao_vagas.modules.candidate;
 
-import java.lang.StackWalker.Option;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
