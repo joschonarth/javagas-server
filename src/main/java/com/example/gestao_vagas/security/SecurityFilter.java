@@ -3,7 +3,6 @@ package com.example.gestao_vagas.security;
 import java.lang.Object;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
