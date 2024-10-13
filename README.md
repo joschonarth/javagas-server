@@ -1,4 +1,4 @@
-# Projeto de Gestão de Vagas com Java e Spring Boot ☕🍃 
+# Gestão de Vagas com Java e Spring Boot ☕🍃 
 
 ### ⚠️ Em Desenvolvimento 🚧
 
