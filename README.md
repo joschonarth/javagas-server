@@ -17,6 +17,7 @@ Este projeto tem como objetivo a criação de uma aplicação para a gestão de 
 * ✨ **Lombok** - Utilizado para reduzir a quantidade de código boilerplate, gerando automaticamente getters, setters e construtores.
 * 🔒 **Spring Security** - Responsável pela implementação da autenticação e autorização, garantindo o controle de acesso às funcionalidades da aplicação.
 * 🔑 **Java JWT** - Utilizado para gerar e validar tokens JWT (JSON Web Tokens), garantindo a segurança nas autenticações e permitindo o controle de sessões de forma segura, sem a necessidade de armazenar informações sensíveis no servidor.
+* 📗 **Swagger** - Utilizado para documentar e testar as APIs REST de forma interativa e facilitar o entendimento dos endpoints disponíveis na aplicação.
 
 
 
