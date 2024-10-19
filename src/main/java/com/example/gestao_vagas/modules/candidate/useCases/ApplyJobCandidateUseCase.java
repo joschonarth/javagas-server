@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.gestao_vagas.exceptions.JobNotFoundException;
 import com.example.gestao_vagas.exceptions.UserNotFoundException;
 import com.example.gestao_vagas.modules.candidate.CandidateRepository;
+import com.example.gestao_vagas.modules.candidate.entity.ApplyJobEntity;
 import com.example.gestao_vagas.modules.candidate.repository.ApplyJobRepository;
 import com.example.gestao_vagas.modules.company.repositories.JobRepository;
 
@@ -23,7 +24,7 @@ public class ApplyJobCandidateUseCase {
     @Autowired
     private ApplyJobRepository applyJobRepository;
 
-    public void execute(UUID idCadidate, UUID idJob) {
+    public ApplyJobEntity execute(UUID idCadidate, UUID idJob) {
 
         this.candidateRepository.findById(idCadidate)
         .orElseThrow(() -> {
@@ -34,6 +35,13 @@ public class ApplyJobCandidateUseCase {
         .orElseThrow(() -> {
             throw new JobNotFoundException();
         });
+
+        var applyJob = ApplyJobEntity.builder()
+        .candidateId(idCadidate)
+        .jobId(idJob).build();
+
+        applyJob = applyJobRepository.save(applyJob);
+        return applyJob;
     }
     
 }
