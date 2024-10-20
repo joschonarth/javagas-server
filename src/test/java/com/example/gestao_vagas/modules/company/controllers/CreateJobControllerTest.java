@@ -1,5 +1,7 @@
 package com.example.gestao_vagas.modules.company.controllers;
 
+import java.util.UUID;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -68,7 +70,22 @@ public class CreateJobControllerTest {
             .andExpect(MockMvcResultMatchers.status().isOk());
         
         System.out.println(result);
-
     }
+
+    @Test
+    public void shouldNotCreateNewJobIfCompanyNotFound() throws Exception {
+        
+        var createJobDTO = CreateJobDTO.builder()
+            .benefits("BENEFITS_TEST")
+            .description("DESCRIPTION_TEST")
+            .level("LEVEL_TEST")
+            .build();
+
+        mvc.perform(MockMvcRequestBuilders.post("/company/job/")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtils.objectToJSON(createJobDTO))
+            .header("Authorization", TestUtils.generateToken(UUID.randomUUID(), "JAVAGAS_@123#")))
+            .andExpect(MockMvcResultMatchers.status().isBadRequest());
+        }
     
 }
