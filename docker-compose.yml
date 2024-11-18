@@ -1,7 +1,15 @@
 name: gestao_vagas
 
+networks:
+  gv-network:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+
 services:
-  pg:
+  postgres:
+    container_name: gestao_vagas_postgres
     image: bitnami/postgresql:13.16.0
     ports:
       - '5432:5432'
@@ -9,3 +17,13 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=gestao_vagas
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - gv-network
+    ports:
+      - 9090:9090
