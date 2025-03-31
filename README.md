@@ -294,13 +294,21 @@ Caso prefira rodar a aplicação localmente, siga os seguintes passos:
 ]
 ```
 
-## 🌐 Front-End
+### 🧪 Testes
 
-O back-end do **Javagas** se comunica com a aplicação front-end, que é responsável pela interface do usuário e interação com os candidatos e empresas. Você pode acessar o repositório do front-end aqui:
+O projeto contém testes utilizando **JUnit** e **Mockito**, com o banco de dados em memória **H2** configurado para rodar os testes em um ambiente isolado.
 
-👉 [Javagas Front-End](https://github.com/joschonarth/javagas-web)
+Para executar os testes, siga as instruções abaixo:
 
-A interface permite que candidatos se inscrevam, empresas publiquem vagas e usuários naveguem pelas oportunidades de emprego de forma intuitiva.
+1. Certifique-se de que você tem o **JDK 11 ou superior** instalado.
+2. Abra o terminal e navegue até o diretório raiz do projeto.
+3. Execute o seguinte comando para rodar os testes:
+
+```bash
+mvn test
+```
+
+Este comando irá rodar todos os testes configurados no projeto, utilizando o banco de dados **H2** em memória para garantir que os testes sejam executados em um ambiente isolado e sem afetar os dados de produção.
 
 ### 📊 Monitoramento com Prometheus e Grafana  
 
