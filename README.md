@@ -39,10 +39,22 @@
 
 ### 💼 Vagas
 
-- 📌 **Criar vaga**: Publica uma nova oportunidade de emprego.
+- 📝 **Criar vaga**: Publica uma nova oportunidade de emprego.
 - 📋 **Listar vagas**: Retorna todas as vagas disponíveis na plataforma.
 
-## 🚀 Como Executar o Projeto
+## 🔧 Como Executar o Projeto
+
+### 🚀 Deploy
+
+A aplicação Javagas está disponível online através do deploy na plataforma **Render**. Você pode acessá-la diretamente pelo seguinte link:
+
+🔗 [https://gestao-vagas-daoh.onrender.com](https://gestao-vagas-daoh.onrender.com)
+
+📌 Você pode utilizar esta URL para realizar as requisições para a API.
+
+### 🌱 Rodando Localmente
+
+Caso prefira rodar a aplicação localmente, siga os seguintes passos:
 
 1. **Clone o repositório:**
 
@@ -50,13 +62,30 @@
    git clone https://github.com/joschonarth/javagas-server.git
    ```
 
-2. Inicie o banco de dados **PostgreSQL** utilizando o container **Docker** com a imagem ``bitnami/postgresql``:
+2. **Entre no diretório do projeto:**
+
+   ```bash
+   cd javagas-server
+   ```
+
+3. Abra o arquivo `application.properties` que está localizado em `src/main/resources/application.properties`.
+
+    No arquivo `application.properties`, descomente a parte que configura o Banco de Dados PostgreSQL para rodar localmente.
+
+   ```properties
+    # Descomente as linhas abaixo para usar o PostgreSQL localmente
+    spring.datasource.url=jdbc:postgresql://localhost:5432/javagas
+    spring.datasource.username=admin
+    spring.datasource.password=admin
+   ```
+
+4. Inicie o banco de dados **PostgreSQL** utilizando o container **Docker** com a imagem ``bitnami/postgresql``:
 
    ```bash
    docker-compose up -d
    ```
 
-3. **Inicie a API:**
+5. **Inicie a API:**
 
    ```bash
    mvn spring-boot:run
@@ -65,11 +94,16 @@
    - 🚀A aplicação estará disponível em [http://localhost:8080](http://localhost:8080).
    - 📜 Acesse a documentação da API em [Swagger UI](http://localhost:8080/swagger-ui.html).
 
-## 🔗 Rotas da Aplicação
+## 📡 Rotas da Aplicação
 
 ### 🧑‍💻 Rotas do Candidato
 
-- **Criar candidato**: `POST` - `http://localhost:8080/candidate/`
+#### 👤 Criar Candidato
+
+- **Descrição:** Registra um novo candidato na plataforma.
+- **Método:** ``POST``
+- **URL:** ``/candidate``
+- **Corpo da Requisição:**
 
 ```json
 {
@@ -81,20 +115,26 @@
 }
 ```
 
+- **Exemplo de Resposta:**
+
 ```json
 {
     "id": "f94999c1-8a00-4bc2-a09b-e22dc8b7f090",
     "name": "John Doe",
     "username": "johndoe",
     "email": "johndoe@example.com",
-    "password": "$2a$10$/cg4j58We2ZJ47SBZBlEYO68BRW6zXeweC5GnoDrcTw6hiNWBAtBi",
     "description": "Full-Stack Developer",
     "curriculum": null,
     "createdAt": "2025-03-12T18:41:29.993736"
 }
 ```
 
-- **Autenticar candidato**: `POST` - `http://localhost:8080/candidate/auth`
+#### 🔐 Autenticar Candidato
+
+- **Descrição:** Realiza o login de um candidato.
+- **Método:** ``POST``
+- **URL:** ``/candidate/auth``
+- **Corpo da Requisição:**
 
 ```json
 {
@@ -103,9 +143,11 @@
 }
 ```
 
+- **Exemplo de Resposta:**
+
 ```json
 {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqYXZhZ2FzIiwic3ViIjoiZjk0OTk5YzEtOGEwMC00YmMyLWEwOWItZTIyZGM4YjdmMDkwIiwicm9sZXMiOlsiQ0FORElEQVRFIl0sImV4cCI6MTc0MTgxNjMxMn0._RKW3PeMaUPrKUEoGe59QK40-yzyCG1noqY5kgKyWao",
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
     "expires_in": 1741816312251,
     "roles": [
         "CANDIDATE"
@@ -113,9 +155,13 @@
 }
 ```
 
-- **Buscar perfil de candidato**: `GET` - `http://localhost:8080/candidate/`
+#### 🔎 Buscar Perfil de Candidato
 
-busca perfil de candidato autenticado
+- **Descrição**: Retorna as informações do candidato autenticado.
+- **Método**: ``GET``
+- **URL**: ``/candidate``
+
+- **Exemplo de Resposta:**
 
 ```json
 {
@@ -129,7 +175,12 @@ busca perfil de candidato autenticado
 
 ### 🏢 Rotas da Empresa
 
-- **Criar empresa**: `POST` - `http://localhost:8080/company/`
+#### 🏢 Criar empresa
+
+- **Descrição**: Cadastra uma nova empresa no sistema.
+- **Método**: ``POST``
+- **URL**: ``/company``
+- **Corpo da Requisição**:
 
 ```json
 {
@@ -142,20 +193,26 @@ busca perfil de candidato autenticado
 }
 ```
 
+- **Exemplo de Resposta:**
+
 ```json
 {
     "id": "4a56ab16-8c28-44ac-9d62-70df265ec121",
     "name": "Generic Company",
     "username": "company_user",
     "email": "contact@company.com",
-    "password": "$2a$10$AQS0EfOrYCIynfHTPfW8FOSgvIM/EHdiGHMTSP/23gLOtPdVtvjf6",
     "website": "http://www.company.com",
     "description": "Innovative technology company",
     "createdAt": "2025-03-12T18:45:51.982318"
 }
 ```
 
-- **Autenticar empresa**: `POST` - `http://localhost:8080/company/auth`
+#### 🔐 Autenticar Empresa
+
+- **Descrição**: Permite que empresas realizem login.
+- **Método**: ``POST``
+- **URL**: ``/company/auth``
+- **Corpo da Requisição**:
 
 ```json
 {
@@ -164,9 +221,11 @@ busca perfil de candidato autenticado
 }
 ```
 
+- **Exemplo de Resposta:**
+
 ```json
 {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqYXZhZ2FzIiwic3ViIjoiNGE1NmFiMTYtOGMyOC00NGFjLTlkNjItNzBkZjI2NWVjMTIxIiwiZXhwIjoxNzQxODIzMjkwLCJyb2xlcyI6WyJDT01QQU5ZIl19.r89Msl6mC9WX00g5iMEByvIHdZv7sZS7xAO99IbgutI",
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
     "expires_in": 1741823290214,
     "roles": [
         "COMPANY"
@@ -176,21 +235,28 @@ busca perfil de candidato autenticado
 
 ### 💼 Rotas de Vagas
 
-- **Criar vaga**: `POST` - `http://localhost:8080/company/job/`
+#### 📝 Criar Vaga
+
+- **Descrição**: Publica uma nova oportunidade de emprego.
+- **Método**: ``POST``
+- **URL**: ``/company/job``
+- **Corpo da Requisição**:
 
 ```json
 {
     "description": "Job opening for Full-Stack Developer",
-    "benefits": "Pet Friendly, Gym Pass, Meal Voucher, Health Plan, Dental Plan, Transportation Voucher",
+    "benefits": "Pet Friendly, Gym Pass, Meal Voucher, Health Plan, Dental Plan",
     "level": "Junior"
 }
 ```
+
+- **Exemplo de Resposta:**
 
 ```json
 {
     "id": "0ba90db2-40fc-4823-99e4-f4a894bd135e",
     "description": "Job opening for Full-Stack Developer",
-    "benefits": "Pet Friendly, Gym Pass, Meal Voucher, Health Plan, Dental Plan, Transportation Voucher",
+    "benefits": "Pet Friendly, Gym Pass, Meal Voucher, Health Plan, Dental Plan",
     "level": "Junior",
     "companyEntity": null,
     "companyId": "4a56ab16-8c28-44ac-9d62-70df265ec121",
@@ -198,21 +264,26 @@ busca perfil de candidato autenticado
 }
 ```
 
-- **Listar vagas**: `GET` - `http://localhost:8080/company/job/`
+#### 📋 Listar Vagas
+
+- **Descrição**: Retorna todas as vagas disponíveis na plataforma.
+- **Método**: ``GET``
+- **URL**: ``/company/job``
+
+- **Exemplo de Resposta:**
 
 ```json
 [
     {
         "id": "0ba90db2-40fc-4823-99e4-f4a894bd135e",
         "description": "Job opening for Full-Stack Developer",
-        "benefits": "Pet Friendly, Gym Pass, Meal Voucher, Health Plan, Dental Plan, Transportation Voucher",
+        "benefits": "Pet Friendly, Gym Pass, Meal Voucher, Health Plan, Dental Plan",
         "level": "Junior",
         "companyEntity": {
             "id": "4a56ab16-8c28-44ac-9d62-70df265ec121",
             "name": "Generic Company",
             "username": "company_user",
             "email": "contact@company.com",
-            "password": "$2a$10$AQS0EfOrYCIynfHTPfW8FOSgvIM/EHdiGHMTSP/23gLOtPdVtvjf6",
             "website": "http://www.company.com",
             "description": "Innovative technology company",
             "createdAt": "2025-03-12T18:45:51.982318"
@@ -227,7 +298,7 @@ busca perfil de candidato autenticado
 
 O back-end do **Javagas** se comunica com a aplicação front-end, que é responsável pela interface do usuário e interação com os candidatos e empresas. Você pode acessar o repositório do front-end aqui:
 
-🔗 [Javagas Front-End](https://github.com/joschonarth/javagas-web)
+👉 [Javagas Front-End](https://github.com/joschonarth/javagas-web)
 
 A interface permite que candidatos se inscrevam, empresas publiquem vagas e usuários naveguem pelas oportunidades de emprego de forma intuitiva.
 
@@ -240,7 +311,7 @@ A aplicação conta com um sistema de **monitoramento contínuo** utilizando **P
 
 Para iniciar os serviços de monitoramento, basta executar o seguinte comando na raiz do projeto:  
 
-```sh
+```bash
 docker-compose up -d
 ```
 
