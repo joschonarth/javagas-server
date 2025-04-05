@@ -1,4 +1,4 @@
-# 💼 Javagas API
+# 💼 Javagas
 
 **Javagas** é uma plataforma completa para gestão de vagas de emprego, conectando candidatos a oportunidades de forma ágil e eficiente. Candidatos podem criar perfis, buscar e se candidatar a vagas, enquanto empresas publicam oportunidades e gerenciam processos seletivos. Este repositório contém o back-end da aplicação, uma **API RESTful** segura e otimizada, construída com **Java** e **Spring Boot**, garantindo alto desempenho e escalabilidade.
 
@@ -74,7 +74,7 @@
    mvn spring-boot:run
    ```
 
-   - 🚀A aplicação estará disponível em [http://localhost:8080](http://localhost:8080).
+   - 🚀 A aplicação estará disponível em [http://localhost:8080](http://localhost:8080).
    - 📜 Acesse a documentação da API em [Swagger UI](http://localhost:8080/swagger-ui.html).
 
 ## 📡 Rotas da Aplicação
