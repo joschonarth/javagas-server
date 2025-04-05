@@ -1,6 +1,12 @@
-# 💼 Javagas
+# 💼 Javagas API
 
 **Javagas** é uma plataforma completa para gestão de vagas de emprego, conectando candidatos a oportunidades de forma ágil e eficiente. Candidatos podem criar perfis, buscar e se candidatar a vagas, enquanto empresas publicam oportunidades e gerenciam processos seletivos. Este repositório contém o back-end da aplicação, uma **API RESTful** segura e otimizada, construída com **Java** e **Spring Boot**, garantindo alto desempenho e escalabilidade.
+
+<p align="center">
+  <img src="./assets/vagas.png" alt="Tela de Login" width="90%">
+</p>
+
+> 🔗 Este repositório representa a **camada de serviços (back-end)** da aplicação Javagas. Para acessar o front-end, [clique aqui](https://github.com/joschonarth/javagas-web).
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -11,7 +17,7 @@
 - 🐳 **Docker** - Containerização da aplicação para facilitar o desenvolvimento e a implantação.
 - 🔄 **Hibernate** - Mapeamento objeto-relacional (ORM) para facilitar as operações no banco de dados.
 - 📦 **Maven** - Gerenciador de dependências e automação do build.
-- ✨ **Lombok** - Reduz a quantidade de código boilerplate gerando automaticamente getters, setters e construtores.
+- ✨ **Lombok** - Reduz a quantidade de código boilerplate.
 - 🔒 **Spring Security** - Implementa autenticação e autorização para controle de acesso.
 - 🔑 **Java JWT** - Gera e valida tokens JWT para autenticação segura.
 - 📗 **Swagger** - Documentação e testes interativos da API.
@@ -42,19 +48,7 @@
 - 📝 **Criar vaga**: Publica uma nova oportunidade de emprego.
 - 📋 **Listar vagas**: Retorna todas as vagas disponíveis na plataforma.
 
-## 🔧 Como Executar o Projeto
-
-### 🚀 Deploy
-
-A aplicação Javagas está disponível online através do deploy na plataforma **Render**. Você pode acessá-la diretamente pelo seguinte link:
-
-🔗 [https://gestao-vagas-daoh.onrender.com](https://gestao-vagas-daoh.onrender.com)
-
-📌 Você pode utilizar esta URL para realizar as requisições para a API.
-
-### 🌱 Rodando Localmente
-
-Caso prefira rodar a aplicação localmente, siga os seguintes passos:
+## 🚀 Como Executar o Projeto
 
 1. **Clone o repositório:**
 
@@ -68,24 +62,13 @@ Caso prefira rodar a aplicação localmente, siga os seguintes passos:
    cd javagas-server
    ```
 
-3. Abra o arquivo `application.properties` que está localizado em `src/main/resources/application.properties`.
-
-    No arquivo `application.properties`, descomente a parte que configura o Banco de Dados PostgreSQL para rodar localmente.
-
-   ```properties
-    # Descomente as linhas abaixo para usar o PostgreSQL localmente
-    spring.datasource.url=jdbc:postgresql://localhost:5432/javagas
-    spring.datasource.username=admin
-    spring.datasource.password=admin
-   ```
-
-4. Inicie o banco de dados **PostgreSQL** utilizando o container **Docker** com a imagem ``bitnami/postgresql``:
+3. Inicie o banco de dados **PostgreSQL** utilizando o container **Docker** com a imagem ``bitnami/postgresql``:
 
    ```bash
    docker-compose up -d
    ```
 
-5. **Inicie a API:**
+4. **Inicie a API:**
 
    ```bash
    mvn spring-boot:run
@@ -293,6 +276,14 @@ Caso prefira rodar a aplicação localmente, siga os seguintes passos:
     }
 ]
 ```
+
+## 🌐 Front-End
+
+O back-end do **Javagas** se comunica com a aplicação front-end, que é responsável pela interface do usuário e interação com os candidatos e empresas. Você pode acessar o repositório do front-end aqui:
+
+👉 [Javagas Front-End](https://github.com/joschonarth/javagas-web)
+
+A interface permite que candidatos se inscrevam, empresas publiquem vagas e usuários naveguem pelas oportunidades de emprego de forma intuitiva.
 
 ### 🧪 Testes
 
